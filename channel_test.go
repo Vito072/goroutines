@@ -2,6 +2,7 @@ package go_goroutines
 
 import (
 	"fmt"
+	"strconv"
 	"testing"
 	"time"
 )
@@ -76,4 +77,20 @@ func TestBufferedChannel(t *testing.T) {
 
 	time.Sleep(2 * time.Second)
 	fmt.Println("Done upload to buffer")
+}
+
+func TestRangeChannel(t *testing.T) {
+	channel := make(chan string)
+
+	go func() {
+		for i := range 10 {
+			channel <- "Perulangan ke " + strconv.Itoa(i)
+		}
+		close(channel)
+	}()
+
+	for data := range channel {
+		fmt.Println("Get Data", data)
+	}
+	fmt.Println("Success")
 }
