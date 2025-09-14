@@ -1,4 +1,4 @@
-package gogoroutines
+package go_goroutines
 
 import (
 	"fmt"
