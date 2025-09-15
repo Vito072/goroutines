@@ -95,7 +95,7 @@ func TestRangeChannel(t *testing.T) {
 	fmt.Println("Success")
 }
 
-func TestSelectChannel(t *testing.T) {
+func TestDefaultSelectChannel(t *testing.T) {
 	channel1 := make(chan string)
 	channel2 := make(chan string)
 	defer close(channel1)
@@ -114,6 +114,8 @@ func TestSelectChannel(t *testing.T) {
 		case data := <-channel2:
 			fmt.Println("Data dari channel 2", data)
 			counter++
+		default:
+			fmt.Println("Menunggu data")
 		}
 		if counter == 2 {
 			break
